@@ -9,10 +9,13 @@ import Crypto.Util.Counter
 import random
 import os
 
+<<<<<<< HEAD:pycrypto.py
 # Menu time
 
 
 
+=======
+>>>>>>> testing:pycrypto.py
 # iv = random.randint(0, 99)
 
 # encryption function
