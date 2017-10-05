@@ -9,6 +9,8 @@ import Crypto.Util.Counter
 import random
 import os
 
+# Menu time
+
 # iv = random.randint(0, 99)
 
 # encryption function
@@ -27,7 +29,7 @@ def encryptfile(in_filename, out_filename = None):
     hashed_key = hashkey.digest()
     
     # get that iv
-    print("So what is the iv?")
+    print("So what is the iv (that integer)?")
     sleep(0.2)
     iv = int(input("> "))
     
@@ -41,7 +43,7 @@ def encryptfile(in_filename, out_filename = None):
     infile.close()
     outfile.close()
     
-encryptfile('testin.txt')
+# #encryptfile('testin.txt')
 # encryptfile('testin.txt', iv)
 # decryption function
 
@@ -60,7 +62,7 @@ def decryptfile(in_filename, out_filename  = None):
     newhashed_key = newhashkey.digest()
     
     # get that iv    # get that iv
-    print("So what is the iv?")
+    print("So what is the iv (that integer)?")
     sleep(0.2)
     iv = int(input("> "))
     
@@ -75,4 +77,15 @@ def decryptfile(in_filename, out_filename  = None):
     outfile.close()
 
 # decryptfile('testin.txt.pcr', iv)
-decryptfile('testin.txt.pcr', 'testout.txt')
+# #decryptfile('testin.txt.pcr', 'testout.txt')
+
+# The main function
+def main():
+    print("""
+    
+    
+    
+    """)
+    
+
+main()
