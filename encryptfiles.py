@@ -1,3 +1,6 @@
+# made with <3 by Dan Goodman, signed 10/2/2017
+# this was quite helpful: https://eli.thegreenplace.net/2010/06/25/aes-encryption-of-files-in-python-with-pycrypto , but I also used a lot of my own code from 'do some encryption CTR.py'
+
 import hashlib
 from Crypto.Cipher import AES
 from Crypto.Hash import SHA256
