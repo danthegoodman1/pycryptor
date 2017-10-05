@@ -79,13 +79,25 @@ def decryptfile(in_filename, out_filename  = None):
 # decryptfile('testin.txt.pcr', iv)
 # #decryptfile('testin.txt.pcr', 'testout.txt')
 
-# The main function
-def main():
+def header():
     print("""
     
-    
-    
+██████╗ ██╗   ██╗ ██████╗██████╗ ██╗   ██╗██████╗ ████████╗ ██████╗ ██████╗ 
+██╔══██╗╚██╗ ██╔╝██╔════╝██╔══██╗╚██╗ ██╔╝██╔══██╗╚══██╔══╝██╔═══██╗██╔══██╗
+██████╔╝ ╚████╔╝ ██║     ██████╔╝ ╚████╔╝ ██████╔╝   ██║   ██║   ██║██████╔╝
+██╔═══╝   ╚██╔╝  ██║     ██╔══██╗  ╚██╔╝  ██╔═══╝    ██║   ██║   ██║██╔══██╗
+██║        ██║   ╚██████╗██║  ██║   ██║   ██║        ██║   ╚██████╔╝██║  ██║
+╚═╝        ╚═╝    ╚═════╝╚═╝  ╚═╝   ╚═╝   ╚═╝        ╚═╝    ╚═════╝ ╚═╝  ╚═╝
+    Made with ❤ By Dan Goodman
     """)
+
+def menu():
+    pass
+
+
+# The main function
+def main():
+    header()
     
 
 main()
