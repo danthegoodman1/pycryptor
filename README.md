@@ -1,7 +1,7 @@
 # pythonAES/pyCryptor
 
 
-## (WIP) My own Python encryption program
+## (WIP) My own Python encryption program (See testing branch for most updated version)
 
 
 ## Installation:
@@ -31,6 +31,7 @@ To-Do:
 - converting a string into an int for iv
 - add option to go back to main menu after encrypt or decrypt functions finish
 - Color the print statements inside of the encrypt and decrypt functions
+- Maybe make key handling a function?
  
 ## Project To-Do:
 - make install script (.sh)

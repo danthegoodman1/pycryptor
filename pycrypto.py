@@ -1,16 +1,14 @@
 # made with <3 by Dan Goodman, signed 10/2/2017
 
 # The imports
-import hashlib
+import hashlib # do I even use this one? I don't think so
 from Crypto.Cipher import AES
 from Crypto.Hash import SHA256
 from time import sleep
 import Crypto.Util.Counter
 import random
 import os
-from time import sleep
 from sys import platform
-import random
 import sys
 
 # Menu time
@@ -19,10 +17,14 @@ import sys
 
 # encryption function
 # def encryptfile(in_filename, out_filename = None)
-def encryptfile():
-    # if not out_filename:
-    in_filename = input("So where is that file you want to encrypt?\n> ")
-    out_filename = input("And what do you want the output name to be? (No extension)\n(Leave blank to just add .pcr extension)\n> ")
+def encryptfile(in_filename = None, out_filename = None):
+    # These if statements allow for optional argument passing
+    if in_filename == None:
+        # if not out_filename:
+        in_filename = input("So where is that file you want to encrypt?\n> ")
+    if out_filename == None:
+        # can remove the (No extension) part
+        out_filename = input("And what do you want the output name to be? (No extension)\n(Leave blank to just add .pcr extension)\n> ")
     
     # try to avoid breaking the extension
     if out_filename == '':
@@ -32,10 +34,11 @@ def encryptfile():
         out_filename = out_filename + '.pcr'
     else:
         # out_filename = out_filename + infilename[-4:] + '.pcr'
+        # this method gives easy of file type handling for the future (hoping that there is no . in the normal file name)
         inhead, insep, inext = in_filename.partition('.')
         out_filename = out_filename + insep + inext + '.pcr'
     
-    # key stuff
+    # key handling
     print("So what is the key (password) going to be for this?")
     sleep(0.2)
     key = input('> ')
@@ -65,14 +68,17 @@ def encryptfile():
 
 # def decryptfile(in_filename, iv, out_filename = None)
 # def decryptfile(in_filename, out_filename  = None):
-def decryptfile():
-    in_filename = input("So where is that file you want to decrypt?\n> ")
-    out_filename = input("And what do you want the output name to be?\n(Leave blank to just remove .pcr extension and prefix with: 'decrypted')\n> ")
+def decryptfile(in_filename = None, out_filename = None):
+    # These if statements allow for optional argument passing
+    if in_filename == None:
+        in_filename = input("So where is that file you want to decrypt?\n> ")
+    if out_filename == None:
+        out_filename = input("And what do you want the output name to be?\n(Leave blank to just remove .pcr extension and prefix with: 'decrypted')\n> ")
     
     if out_filename == '':
         out_filename = 'decrypted' + in_filename[:-4]
         
-    # key stuff
+    # key handling
     print('Hey what was that key again?')
     sleep(0.2)
     newkey = input('> ')
@@ -99,6 +105,7 @@ def decryptfile():
 # decryptfile('testin.txt.pcr', iv)
 # #decryptfile('testin.txt.pcr', 'testout.txt')
 
+# Fancy header
 def header():
     print(bcolors.purple + """
     \n
@@ -109,6 +116,7 @@ def header():
 ██║        ██║   ╚██████╗██║  ██║   ██║   ██║        ██║   ╚██████╔╝██║  ██║
 ╚═╝        ╚═╝    ╚═════╝╚═╝  ╚═╝   ╚═╝   ╚═╝        ╚═╝    ╚═════╝ ╚═╝  ╚═╝
     """ + bcolors.yellow + " Made with" + bcolors.red + " ❤ " + bcolors.yellow + "By Dan Goodman\n " + bcolors.endcolor)
+    print(bcolors.blue + "Version: 0.9\n" + bcolors.endcolor)
 
 # fairly self descriptive, but it clears the screen depending on os type
 def clearscreen():
@@ -139,7 +147,6 @@ class bcolors:
     purplebold = '\u001b[35;1m'
     whitebolder = '\u001b[37;1m'
     reset = '\u001b[0m'
-    
 
 # the menu items
 def menuitems():
@@ -150,7 +157,8 @@ def menuitems():
     print(bcolors.cyanbold + "D: Decrypt a file" + bcolors.endcolor)
     sleep(0.1)
     print(bcolors.red + "Q: Quit the program" + bcolors.endcolor)
-    
+
+# menu items with a fancy typing look (can add randomness to make it look more like typwriter but it takes too long this way anyway)
 def typeoutmenuitems():
     line1 = "\n" + bcolors.whitebolder + "Menu Options:" + bcolors.reset
     for i in line1:
@@ -179,7 +187,7 @@ def typeoutmenuitems():
         sys.stdout.flush()
         sleep(0.05)
 
-# menu function
+# menu function... it's the menu
 def menu():
     try:
         choice = ''
@@ -200,7 +208,7 @@ def menu():
         print("You want to leave so early?\nI thought we were just getting started!")
 
 
-# The main function
+# The main function (That is currently calling one function...)
 def main():
     menu()
     
