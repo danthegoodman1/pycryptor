@@ -22,6 +22,8 @@ Currently can:
 - Take files and decrypt them
 - Uses custom .pcr file type (pyCryptor is the idea...)
 - Hashes the key using SHA256(may update to SHA512)
+- Support for any extension length
+- Robust naming algorithm when encrypting files to not break original file extension
 
 To-Do:
 
@@ -31,7 +33,7 @@ To-Do:
 - Color the print statements inside of the encrypt and decrypt functions
  
 ## Project To-Do:
-- make install script
+- make install script (.sh)
 
 ## Completed:
 

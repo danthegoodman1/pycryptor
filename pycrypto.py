@@ -22,10 +22,18 @@ import sys
 def encryptfile():
     # if not out_filename:
     in_filename = input("So where is that file you want to encrypt?\n> ")
-    out_filename = input("And what do you want the output name to be?\n(Leave blank to just add .pcr extension)\n> ")
+    out_filename = input("And what do you want the output name to be? (No extension)\n(Leave blank to just add .pcr extension)\n> ")
     
+    # try to avoid breaking the extension
     if out_filename == '':
         out_filename = in_filename + '.pcr'
+    # in case they added the extension
+    elif '.' in out_filename:
+        out_filename = out_filename + '.pcr'
+    else:
+        # out_filename = out_filename + infilename[-4:] + '.pcr'
+        inhead, insep, inext = in_filename.partition('.')
+        out_filename = out_filename + insep + inext + '.pcr'
     
     # key stuff
     print("So what is the key (password) going to be for this?")
