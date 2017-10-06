@@ -4,7 +4,7 @@
 ## (WIP) My own Python encryption program (See testing branch for most updated version)
 
 
-## Installation:
+## Installation (WIP):
 
 - git clone the repo (obviously)
 - cd into the repo
