@@ -27,6 +27,8 @@ To-Do:
 
 - Make more user friendly (a nice cli menu to hold the user's hand)
 - converting a string into an int for iv
+- add option to go back to main menu after encrypt or decrypt functions finish
+- Color the print statements inside of the encrypt and decrypt functions
  
 ## Project To-Do:
 - make install script
