@@ -1,7 +1,6 @@
 # made with <3 by Dan Goodman, signed 10/2/2017
 
 # The imports
-import hashlib # do I even use this one? I don't think so
 from Crypto.Cipher import AES
 from Crypto.Hash import SHA256
 from time import sleep
@@ -10,6 +9,7 @@ import random
 import os
 from sys import platform
 import sys
+import binascii
 
 # Menu time
 
@@ -47,10 +47,10 @@ def encryptfile(in_filename = None, out_filename = None):
     # print("The hash digest is", hashkey.digest())
     hashed_key = hashkey.digest()
     
-    # get that iv
-    print("So what is the iv (that integer)?")
-    sleep(0.2)
-    iv = int(input("> "))
+    # handle iv
+    iv = os.urandom(32)
+    binascii.hexlify(iv)
+    iv = int(binascii.hexlify(iv), 16)
     
     # encryption time
     ctr = Crypto.Util.Counter.new(128, initial_value = iv)
@@ -58,7 +58,8 @@ def encryptfile(in_filename = None, out_filename = None):
     infile = open(in_filename, 'rb')
     outfile = open(out_filename, 'wb')
     data  = infile.read()
-    outfile.write(encryptor.encrypt(data))
+    # figure out how to concatenate these (maybe turning them into strings will be ok since the file is opened in binary mode anyway) actually this might work fine
+    outfile.write(iv + encryptor.encrypt(data))
     infile.close()
     outfile.close()
     
@@ -87,19 +88,17 @@ def decryptfile(in_filename = None, out_filename = None):
     # print("The hash digest is", newhashkey.digest())
     newhashed_key = newhashkey.digest()
     
-    # get that iv    # get that iv
-    print("So what is the iv (that integer)?")
-    sleep(0.2)
-    iv = int(input("> "))
+    # get the iv (first 32 bytes of data in the file)
+    infileraw = open(in_filename, 'rb')
+    iv = infileraw.read()[:33]
+    data = infileraw.read()[32:]
     
     # decryption time
     ctr = Crypto.Util.Counter.new(128, initial_value = iv)
     encryptor = AES.new(newhashed_key, AES.MODE_CTR, counter = ctr)
-    infile = open(in_filename, 'rb')
     outfile = open(out_filename, 'wb')
-    data  = infile.read()
     outfile.write(encryptor.decrypt(data))
-    infile.close()
+    infileraw.close()
     outfile.close()
 
 # decryptfile('testin.txt.pcr', iv)
@@ -116,7 +115,7 @@ def header():
 ██║        ██║   ╚██████╗██║  ██║   ██║   ██║        ██║   ╚██████╔╝██║  ██║
 ╚═╝        ╚═╝    ╚═════╝╚═╝  ╚═╝   ╚═╝   ╚═╝        ╚═╝    ╚═════╝ ╚═╝  ╚═╝
     """ + bcolors.yellow + " Made with" + bcolors.red + " ❤ " + bcolors.yellow + "By Dan Goodman\n " + bcolors.endcolor)
-    print(bcolors.blue + "Version: 0.9\n" + bcolors.endcolor)
+    print(bcolors.blue + "Version: 0.9.1\n" + bcolors.endcolor)
 
 # fairly self descriptive, but it clears the screen depending on os type
 def clearscreen():

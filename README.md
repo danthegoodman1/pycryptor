@@ -4,12 +4,12 @@
 ## (WIP) My own Python encryption program (See testing branch for most updated version)
 
 
-## Installation (WIP):
+## Installation:
 
 - git clone the repo (obviously)
 - cd into the repo
 - run in terminal:
-`sudo python3 install.py`
+`sudo -H pip3 install pycrypto`
 - when complete, you are ready to run:
 `python3 pycryptor.py`!!!
 
@@ -28,13 +28,12 @@ Currently can:
 To-Do:
 
 - Make more user friendly (a nice cli menu to hold the user's hand)
-- converting a string into an int for iv
+- integrate random iv generation (removing user input)
 - add option to go back to main menu after encrypt or decrypt functions finish
 - Color the print statements inside of the encrypt and decrypt functions
 - Maybe make key handling a function?
- 
-## Project To-Do:
-- make install script (.sh)
+
+
 
 ## Completed:
 
@@ -44,3 +43,4 @@ To-Do:
 - Combine CBC and CTR into single program and give user option
 - Finish making the out\_filename optional
 - Make iv's not a random int from 0-98 (make an additional user input alongside the key), make it random bytes (using urandom) converted to an integer
+- Finish install instructions
