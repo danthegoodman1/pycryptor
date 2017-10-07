@@ -147,7 +147,7 @@ def header():
 ██║        ██║   ╚██████╗██║  ██║   ██║   ██║        ██║   ╚██████╔╝██║  ██║
 ╚═╝        ╚═╝    ╚═════╝╚═╝  ╚═╝   ╚═╝   ╚═╝        ╚═╝    ╚═════╝ ╚═╝  ╚═╝
     """ + bcolors.yellow + " Made with" + bcolors.red + " ❤ " + bcolors.yellow + "By Dan Goodman\n " + bcolors.endcolor)
-    print(bcolors.blue + "Version: 1.0\n" + bcolors.endcolor)
+    print(bcolors.blue + "Version: 1.1\n" + bcolors.endcolor)
 
 # fairly self descriptive, but it clears the screen depending on os type
 def clearscreen():
