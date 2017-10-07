@@ -90,7 +90,7 @@ def decryptfile(in_filename = None, out_filename = None):
     
     # get the iv (first 32 bytes of data in the file)
     infileraw = open(in_filename, 'rb')
-    iv = infileraw.read()[:33]
+    iv = infileraw.read()[:32]
     data = infileraw.read()[32:]
     
     # decryption time
