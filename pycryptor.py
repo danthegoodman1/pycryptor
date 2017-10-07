@@ -1,5 +1,7 @@
 # made with <3 by Dan Goodman, signed 10/2/2017
 
+# Thanks to Andy Novocin for help with iv handling
+
 # The imports
 from Crypto.Cipher import AES
 from Crypto.Hash import SHA256
@@ -14,6 +16,22 @@ import binascii
 # Menu time
 
 # iv = random.randint(0, 99)
+
+# Andy's part
+num_bytes = 32
+ivbytes = os.urandom(num_bytes)
+
+def bytes2int(rawbytes):
+  return int(binascii.hexlify(rawbytes),16)
+
+def int2bytes(bigint, n_bytes):
+  return binascii.unhexlify(format(bigint, 'x').zfill(n_bytes*2))
+
+intiv = bytes2int(ivbytes)
+rawbytesiv = int2bytes(intiv, num_bytes)
+
+
+
 
 # encryption function
 # def encryptfile(in_filename, out_filename = None)
@@ -48,18 +66,26 @@ def encryptfile(in_filename = None, out_filename = None):
     hashed_key = hashkey.digest()
     
     # handle iv
-    iv = os.urandom(32)
-    binascii.hexlify(iv)
-    iv = int(binascii.hexlify(iv), 16)
+    # iv = os.urandom(32)
+    # print(iv)
+    # binascii.hexlify(iv)
+    # iv = int(binascii.hexlify(iv), 16)
+    # print(iv)
+    
+    num_bytes = 32
+    ivbytes = os.urandom(num_bytes)
+
+    intiv = bytes2int(ivbytes)
+    rawbytesiv = int2bytes(intiv, num_bytes)
     
     # encryption time
-    ctr = Crypto.Util.Counter.new(128, initial_value = iv)
+    ctr = Crypto.Util.Counter.new(128, initial_value = intiv)
     encryptor = AES.new(hashed_key, AES.MODE_CTR, counter = ctr)
     infile = open(in_filename, 'rb')
     outfile = open(out_filename, 'wb')
     data  = infile.read()
-    # figure out how to concatenate these (maybe turning them into strings will be ok since the file is opened in binary mode anyway) actually this might work fine
-    outfile.write(iv + encryptor.encrypt(data))
+    # outfile_content = "{0}{1}".format(rawbytesiv, encryptor.encrypt(data))
+    outfile.write(rawbytesiv + encryptor.encrypt(data))
     infile.close()
     outfile.close()
     
@@ -78,7 +104,8 @@ def decryptfile(in_filename = None, out_filename = None):
     
     if out_filename == '':
         out_filename = 'decrypted' + in_filename[:-4]
-        
+    else: out_filename = out_filename + in_filename[:-4]
+
     # key handling
     print('Hey what was that key again?')
     sleep(0.2)
@@ -90,14 +117,19 @@ def decryptfile(in_filename = None, out_filename = None):
     
     # get the iv (first 32 bytes of data in the file)
     infileraw = open(in_filename, 'rb')
-    iv = infileraw.read()[:32]
-    data = infileraw.read()[32:]
+    encrypted_file = infileraw.read()
+    ivbytes = encrypted_file[:32]
+    numbytes = 32
+    intiv = bytes2int(ivbytes)
+    data = encrypted_file[32:]
     
     # decryption time
-    ctr = Crypto.Util.Counter.new(128, initial_value = iv)
+    ctr = Crypto.Util.Counter.new(128, initial_value = intiv)
     encryptor = AES.new(newhashed_key, AES.MODE_CTR, counter = ctr)
     outfile = open(out_filename, 'wb')
-    outfile.write(encryptor.decrypt(data))
+    decryptiondata = encryptor.decrypt(data)
+    print(decryptiondata)
+    outfile.write(decryptiondata)
     infileraw.close()
     outfile.close()
 
@@ -157,7 +189,7 @@ def menuitems():
     sleep(0.1)
     print(bcolors.red + "Q: Quit the program" + bcolors.endcolor)
 
-# menu items with a fancy typing look (can add randomness to make it look more like typwriter but it takes too long this way anyway)
+# menu items with a fancy typing look (can add randomness to make it look more like typewriter but it takes too long this way anyway)
 def typeoutmenuitems():
     line1 = "\n" + bcolors.whitebolder + "Menu Options:" + bcolors.reset
     for i in line1:
