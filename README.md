@@ -16,7 +16,6 @@
 
 
 ## pycryptor.py (WIP):
-Currently can:
 
 - Take files and encrypt them
 - Take files and decrypt them
@@ -27,8 +26,6 @@ Currently can:
 
 To-Do:
 
-- Make more user friendly (a nice cli menu to hold the user's hand)
-- integrate random iv generation (removing user input)
 - add option to go back to main menu after encrypt or decrypt functions finish
 - Color the print statements inside of the encrypt and decrypt functions
 - Maybe make key handling a function?
