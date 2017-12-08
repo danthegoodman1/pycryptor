@@ -31,21 +31,23 @@ rawbytesiv = int2bytes(intiv, num_bytes)
 
 # check keys, and generate if don't exist, generate in PEM format because 1) pycrypto won't generate openssh keys 2) We aren't using these for ssh
 def check_keygen():
-    if os.path.isfile('private.key') == True and os.path.isfile('public.key') == True:
+    if os.path.isfile('private.pem') == True and os.path.isfile('public.pem') == True:
         print("keys already exist!")
     else:
         keypair = RSA.generate(4096)
-        with open("private.key", 'wb') as content_file:
-            # chmod("private.key", 0600)
+        with open("private.pem", 'wb') as content_file:
+            # chmod("private.pem", 0600)
             content_file.write(keypair.exportKey('PEM'))
         pubkey = keypair.publickey()
-        with open("public.key", 'wb') as content_file:
+        with open("public.pem", 'wb') as content_file:
             content_file.write(pubkey.publickey().exportKey('PEM'))
     print("RSA keys have been generated")
     sleep(0.1)
     
-def mix_keys():
-    pass
+def mix_keys(contactkey):
+    f = open('private.pem')
+    myprivkey = RSA.importKey(f.read())
+    theirpubkey = RSA.importKey(contactkey.read())
     
 
 
@@ -175,6 +177,7 @@ def addcontact():
     sleep(0.05)
     name = input("> ")
     sleep(0.1)
+    # maybe make them point to the file and then import it?
     print("And what is their pubkey? (Please make sure you copy it correctly)")
     sleep(0.05)
     pubkey = input("> ")
