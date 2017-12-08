@@ -1,0 +1,48 @@
+notes:
+# this was quite helpful: https://eli.thegreenplace.net/2010/06/25/aes-encryption-of-files-in-python-with-pycrypto , but I also used a lot of my own code from 'do some encryption CTR.py PoC project'
+
+# this was for key generation https://stackoverflow.com/questions/2466401/how-to-generate-ssh-key-pairs-with-python
+
+# this was better for keygen https://www.blog.pythonlibrary.org/2016/05/18/python-3-an-intro-to-encryption/
+
+# this for figuring out I can't mix keys using the module and have to make my own https://www.laurentluce.com/posts/python-and-cryptography-with-pycrypto/#a_3
+
+
+
+
+
+git diff --name-only --cached
+^ see whats stages
+
+git rm --cached [file]
+^ remove a staged file
+
+repo is called pycrypto not pycryptor
+
+git branch (lists branches) [new branch]
+
+git checkout (switches to branch) -b [new branch]
+
+git checkout shows files
+
+to merge, you have to merge, then push
+
+use mergetool if there are conflicts, then keep hitting (esc) :q to get out of the vim editors
+
+
+WHAT TO ADD:
+- Maybe put whole program in try except loop to make sure that we can close the sqlite table no matter when the user aborts? (ask andy)
+- Make system that checks of a contact already exists under name or pubkey before adding
+- Add multiple people being able to decrypt the file, plus making sure you can always open it
+- Add mixing of pub key and private key
+- Maybe add when contact is added their pub key is formatted from PEM to bytes in order to prevent sqlite3 from breaking formatting?
+
+
+
+http://patorjk.com/software/taag/#p=display&f=ANSI%20Shadow&t=Pycryptor
+^ for generating ascii art
+
+❤
+
+colors from: https://stackoverflow.com/questions/287871/print-in-terminal-with-colors-using-python
+and: http://www.lihaoyi.com/post/BuildyourownCommandLinewithANSIescapecodes.html#background-colors
