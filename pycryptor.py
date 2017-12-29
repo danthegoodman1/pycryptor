@@ -100,10 +100,10 @@ def decryptfile(in_filename = None, out_filename = None):
     if in_filename == None:
         in_filename = input("So where is that file you want to decrypt?\n> ")
     if out_filename == None:
-        out_filename = input("And what do you want the output name to be?\n(Leave blank to just remove .pcr extension and prefix with: 'decrypted')\n> ")
+        out_filename = input("And what do you want the output name to be?\n(Leave blank to just remove .pcr extension and prefix with: 'decrypted-')\n> ")
     
     if out_filename == '':
-        out_filename = 'decrypted' + in_filename[:-4]
+        out_filename = 'decrypted-' + in_filename[:-4]
     else: out_filename = out_filename + in_filename[:-4]
 
     # key handling
@@ -112,7 +112,7 @@ def decryptfile(in_filename = None, out_filename = None):
     newkey = input('> ')
     newhashkey = SHA256.new()
     newhashkey.update(newkey.encode())
-    # print("The hash digest is", newhashkey.digest())
+    # print("The hash digest is", newhashkey.digest())d
     newhashed_key = newhashkey.digest()
     
     # get the iv (first 32 bytes of data in the file)
