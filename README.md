@@ -27,8 +27,6 @@ Currently can:
 
 To-Do:
 
-- Make more user friendly (a nice cli menu to hold the user's hand)
-- integrate random iv generation (removing user input)
 - add option to go back to main menu after encrypt or decrypt functions finish
 - Color the print statements inside of the encrypt and decrypt functions
 - Maybe make key handling a function?
@@ -44,3 +42,5 @@ To-Do:
 - Finish making the out\_filename optional
 - Make iv's not a random int from 0-98 (make an additional user input alongside the key), make it random bytes (using urandom) converted to an integer
 - Finish install instructions
+- Make more user friendly (a nice cli menu to hold the user's hand)
+- integrate random iv generation (removing user input)
