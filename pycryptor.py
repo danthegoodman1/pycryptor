@@ -222,7 +222,7 @@ def typeoutmenuitems():
 def menu():
     try:
         choice = ''
-        while choice not in ['e', 'E', 'd', 'D', '1', '2', 'q', 'Q']:
+        while choice not in ['e', 'E', 'd', 'D', 'q', 'Q']:
             clearscreen()
             header()
             sleep(0.2)
@@ -231,12 +231,13 @@ def menu():
             choice = input('> ')
             if choice == 'e' or choice == 'E':
                 encryptfile()
+            elif choice == 'q' or choice == 'Q':
+                print("Well... See ya!")
+                exit(0)
             elif choice == 'd' or 'D':
                 decryptfile()
-            elif choice == 'q' or choice == 'Q':
-                exit(0)
     except KeyboardInterrupt:
-        print("You want to leave so early?\nI thought we were just getting started!")
+        print("\nYou want to leave so early?\nI thought we were just getting started!")
 
 
 # The main function (That is currently calling one function...)
