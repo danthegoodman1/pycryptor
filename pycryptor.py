@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/local/bin/python3
 
 # made with <3 by Dan Goodman, signed 10/2/2017
 
